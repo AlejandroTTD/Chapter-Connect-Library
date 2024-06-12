@@ -1,4 +1,4 @@
-package baseDato;
+package BaseDatos;
 public class Libro{
     private String titulo;
     private String autor;
@@ -9,6 +9,9 @@ public class Libro{
     public String codigoBarra;
     public int nroUnidades;
 
+    public Libro(String titulo2, String autor2, int anioPublicacion2, String genero2, float precioVenta2,
+            float precioCompra2, String codigoBarra2, int nroUnidades2) {
+    }
     private void actualizarPrecio(){}
     private void actualizarStock(){
         nroUnidades = nroUnidades - 1;

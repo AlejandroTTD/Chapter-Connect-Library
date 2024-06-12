@@ -1,3 +1,4 @@
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import BaseDatos.Libro;
@@ -67,8 +68,18 @@ public class App {
             String titulo = scanner.nextLine();
             System.out.print("Ingrese el autor del libro: ");
             String autor = scanner.nextLine();
-            System.out.print("Ingrese el año de publicación: ");
-            int anioPublicacion = scanner.nextInt();
+            boolean valid = false;
+
+        do {
+            try {
+                System.out.print("Ingrese el año de publicación: ");
+                anioPublicacion = scanner.nextInt();
+                valid = true; // Si se ingresa un número correctamente, se establece valid a true
+            } catch (InputMismatchException e) {
+                System.out.println("Por favor, ingrese un valor numérico.");
+                scanner.next(); // Limpiar el buffer del scanner
+            }
+        } while (!valid);
             scanner.nextLine(); // Consume the newline
             System.out.print("Ingrese el género del libro: ");
             String genero = scanner.nextLine();

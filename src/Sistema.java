@@ -11,7 +11,9 @@ public class Sistema {
     private void procesarVenta(){}
     private void procesarCompra(){}
     public void procesarReembolso(){}
-    public boolean validarCredenciales(String usuario, String contrasena){}
+    public boolean validarCredenciales(String usuario, String contrasena){
+        return false;
+    }
     public String getFichalibro() {
         return fichalibro;
     }

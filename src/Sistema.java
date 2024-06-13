@@ -13,6 +13,7 @@ public class Sistema {
     private void procesarReembolso(){}
     private void validarCredenciales(String usuario, String contrasena){}
     private void validarCodigoBarras(String codigoBarras){}
+
     public String getFichalibro() {
         return fichalibro;
     }

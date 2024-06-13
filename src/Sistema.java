@@ -7,11 +7,12 @@ public class Sistema {
         this.factura = factura;
     }
     private void generarFactura(String codigoBarras){}
-    public void enviarFactura(String correo, String factura){}
+    private void enviarFactura(String correo, String factura){}
     private void procesarVenta(){}
     private void procesarCompra(){}
-    public void procesarReembolso(){}
-    public boolean validarCredenciales(String usuario, String contrasena){}
+    private void procesarReembolso(){}
+    private void validarCredenciales(String usuario, String contrasena){}
+    private void validarCodigoBarras(String codigoBarras){}
     public String getFichalibro() {
         return fichalibro;
     }

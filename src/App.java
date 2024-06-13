@@ -4,6 +4,7 @@ import BaseDatos.Libro;
 
 public class App {
     public static Scanner sc = new Scanner(System.in);
+    //Codigo para implementar en interfaz
     private static final int MAX_LIBROS = 100;
     private static Libro[] libros = new Libro[MAX_LIBROS];
     private static int contadorLibros = 0;

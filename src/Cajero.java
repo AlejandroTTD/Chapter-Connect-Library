@@ -16,15 +16,15 @@ public class Cajero extends Persona {
         setCorreo(correo);
     }
 
-    public void ingresaCompra() {}
-    public void ingresaVenta() {}
-    public void ingresaDevolucion() {}
-    public void consultarStock(/*String, String, String, String*/) {
+    private void ingresaCompra() {}
+    private void ingresaVenta() {}
+    private void ingresaDevolucion() {}
+    public void buscarLibro(String criterioBusqueda) {
         System.out.println("Consultando stock... ");
     }
-    public void iniciarSesion(/*String, String */) {}
-    public void cerrarSesion() {}
-    public void modificarBD() {}
+    private void iniciarSesion(String usuario, String passw) {}
+    private void cerrarSesion() {}
+    private void modificarBD() {}
 
     public String getUsuario() {
         return usuario;

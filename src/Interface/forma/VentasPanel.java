@@ -109,30 +109,30 @@ public class VentasPanel extends JPanel {
     }
 
     private void seleccionarConsumidorFinal() {
-        // Implementar lógica para consumidor final
+        // Implementar logica para consumidor final
     }
 
     private void abrirDialogoFactura() {
-        // Implementar diálogo para datos de factura
+        // Implementar dialogo para datos de factura
     }
 
     private void buscarProductoPorCodigo() {
-        // Implementar búsqueda de producto por código de barras
+        // Implementar busqueda de producto por codigo de barras
     }
 
     private void agregarProducto() {
-        // Implementar lógica para agregar producto
+        // Implementar logica para agregar producto
     }
 
     private void eliminarProducto() {
-        // Implementar lógica para eliminar producto
+        // Implementar logica para eliminar producto
     }
 
     private void confirmarVenta() {
-        // Implementar lógica para confirmar venta
+        // Implementar logica para confirmar venta
     }
 
     private void cancelarVenta() {
-        // Implementar lógica para cancelar venta
+        // Implementar logica para cancelar venta
     }
 }

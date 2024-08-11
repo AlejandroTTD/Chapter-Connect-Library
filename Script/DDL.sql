@@ -113,11 +113,10 @@ CREATE TABLE Compra (
     ID_Compra               INTEGER       NOT NULL PRIMARY KEY AUTOINCREMENT
    ,ID_Proveedor            INTEGER       NOT NULL REFERENCES Proveedor (ID_Proveedor)
    ,FechaCompra             DATE          NOT NULL
-   ,Total                   FLOAT         NOT NULL
 
-   ,Estado                 VARCHAR (1)    NOT NUll DEFAULT ('A')
-   ,FechaCreacion          DATETIME       DEFAULT(datetime('now','localtime'))
-   ,FechaModifica          DATETIME
+   ,Estado                  VARCHAR (1)    NOT NUll DEFAULT ('A')
+   ,FechaCreacion           DATETIME       DEFAULT(datetime('now','localtime'))
+   ,FechaModifica           DATETIME
 );
 
 CREATE TABLE Detalle_Compra (

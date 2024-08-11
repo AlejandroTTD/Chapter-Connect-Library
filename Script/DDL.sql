@@ -6,18 +6,8 @@ DROP TABLE IF EXISTS Cliente;
 DROP TABLE IF EXISTS Libro;
 DROP TABLE IF EXISTS Venta;
 DROP TABLE IF EXISTS Detalle_Venta;
-DROP TABLE IF EXISTS PersonaTipo;
+DROP TABLE IF EXISTS Reembolso;
 
--- Tabla Clasificaciones
-CREATE TABLE EntidadTipo (
-     ID_EntidadTipo          INTEGER       NOT NULL PRIMARY KEY AUTOINCREMENT
-    ,Nombre                  VARCHAR(10)   NOT NULL UNIQUE
-
-    ,Estado                  VARCHAR (1)   NOT NUll DEFAULT ('A')
-    ,FechaCreacion           DATETIME      DEFAULT(datetime('now','localtime'))
-    ,FechaModifica           DATETIME
-);
--- Tabla Persona
 CREATE TABLE Persona (
      ID_Persona              INTEGER         NOT NULL PRIMARY KEY AUTOINCREMENT
     ,ID_EntidadTipo          INTEGER         NOT NULL REFERENCES EntidadTipo (ID_EntidadTipo)
@@ -96,38 +86,19 @@ CREATE TABLE Venta (
 
 -- Tabla Detalles de la Venta
 CREATE TABLE Detalle_Venta (
-     ID_Detalle_Venta         INTEGER      NOT NULL PRIMARY KEY AUTOINCREMENT
-    ,ID_Venta                 INTEGER      UNIQUE NOT NULL REFERENCES Venta (ID_Venta)
-    ,ID_Libro                 INTEGER      NOT NULL REFERENCES Libro   (ID_Libro)
-    ,FechaVenta               DATE         NOT NULL
-    ,Cantidad                 INTEGER      NOT NULL
-    ,PrecioUnitario           FLOAT        NOT NULL
-    ,Total                    FLOAT
-
-    ,Estado                   VARCHAR (1)  NOT NUll DEFAULT ('A')
-    ,FechaCreacion            DATETIME     DEFAULT(datetime('now','localtime'))
-    ,FechaModifica            DATETIME
-);
--- Tabla Compra
-CREATE TABLE Compra (
-    ID_Compra               INTEGER       NOT NULL PRIMARY KEY AUTOINCREMENT
-   ,ID_Proveedor            INTEGER       NOT NULL REFERENCES Proveedor (ID_Proveedor)
-   ,FechaCompra             DATE          NOT NULL
-   ,Total                   FLOAT         NOT NULL
-
-   ,Estado                 VARCHAR (1)    NOT NUll DEFAULT ('A')
-   ,FechaCreacion          DATETIME       DEFAULT(datetime('now','localtime'))
-   ,FechaModifica          DATETIME
+     ID_Detalle_Venta INTEGER    PRIMARY KEY AUTOINCREMENT
+    ,ID_Venta         INTEGER    UNIQUE NOT NULL
+    ,Cantidad         INTEGER    NOT NULL
+    ,Precio_Unitario  FLOAT      NOT NULL
+    ,Subtotal         FLOAT
+    ,FOREIGN KEY (ID_Venta) REFERENCES Venta(ID_Venta)
 );
 
-CREATE TABLE Detalle_Compra (
-     ID_Detalle_Compra       INTEGER       NOT NULL PRIMARY KEY AUTOINCREMENT
-    ,ID_Compra               INTEGER       UNIQUE NOT NULL REFERENCES Compra (ID_Compra)
-    ,ID_Libro                INTEGER       NOT NULL REFERENCES Libro   (ID_Libro)
-    ,Cantidad                INTEGER       NOT NULL
-    ,PrecioUnitario          FLOAT         NOT NULL
-    ,Total                   FLOAT         NOT NULL
-    ,Estado                  VARCHAR (1)   NOT NUll DEFAULT ('A')
-    ,FechaCreacion           DATETIME      DEFAULT(datetime('now','localtime'))
-    ,FechaModifica           DATETIME
-)
+CREATE TABLE Reembolso (
+    ID_Reembolso    INTEGER PRIMARY KEY AUTOINCREMENT,
+    ID_Venta        INTEGER NOT NULL,
+    Fecha_Reembolso DATETIME NOT NULL,
+    Monto_Reembolso DECIMAL(10,2) NOT NULL,
+    Motivo          TEXT,
+    FOREIGN KEY (ID_Venta) REFERENCES Venta(ID_Venta)
+);

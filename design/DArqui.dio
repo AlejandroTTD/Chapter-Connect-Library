@@ -10,9 +10,6 @@
                 <mxCell id="32" value="&lt;font color=&quot;#1a1a1a&quot;&gt;&lt;b&gt;DAO&lt;/b&gt;&lt;br&gt;&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f9f7ed;strokeColor=#36393d;" vertex="1" parent="1">
                     <mxGeometry x="229.62" y="-783.19" width="44" height="47" as="geometry"/>
                 </mxCell>
-                <mxCell id="33" value="&lt;font color=&quot;#828282&quot; style=&quot;font-size: 18px;&quot;&gt;&lt;b style=&quot;&quot;&gt;Arquitectura N-TIER&lt;/b&gt;&lt;/font&gt;" style="text;html=1;strokeColor=#1D1A19;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;labelBackgroundColor=none;fontColor=#333333;" vertex="1" parent="1">
-                    <mxGeometry x="192" y="-1030.51" width="245" height="30" as="geometry"/>
-                </mxCell>
                 <mxCell id="34" value="&lt;font color=&quot;#1a1a1a&quot;&gt;&lt;b&gt;Data Helper&lt;/b&gt;&lt;br&gt;&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f9f7ed;strokeColor=#36393d;" vertex="1" parent="1">
                     <mxGeometry x="324.62" y="-783.3" width="58" height="47" as="geometry"/>
                 </mxCell>

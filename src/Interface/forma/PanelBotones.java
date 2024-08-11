@@ -11,7 +11,6 @@ import javax.swing.BoxLayout;
 
 import Interface.IAStyle;
 import Interface.Customer.newButton2;
-import Interface.Customer.newLabelText;
 
 public class PanelBotones extends JPanel{
     public newButton2
@@ -28,8 +27,9 @@ public class PanelBotones extends JPanel{
     }
 
     private void customizeComponent() {
+        setBackground(IAStyle.COLOR_FONDO);
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-        setPreferredSize(new Dimension(250, getHeight())); 
+        setPreferredSize(new Dimension(180, 820)); 
 
         try {
             Image logo = ImageIO.read(IAStyle.URL_LOGO);
@@ -47,6 +47,6 @@ public class PanelBotones extends JPanel{
         add(btnFACTURACION);
         add(btnEXIT);
 
-        add(new newLabelText("\u00A9 2024 Chapter Connect"));
+        add(new JLabel("\u00A9 2024 Chapter Connect"));
     }
 }

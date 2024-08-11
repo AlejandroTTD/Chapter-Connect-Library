@@ -13,14 +13,15 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
 public abstract class IAStyle {
-    public static final Color COLOR_FONT = new Color(0, 34, 141); //(218, 8, 40)
-    public static final Color COLOR_FONT_LIGHT = new Color(85, 85, 85);
-    public static final Color COLOR_FONDO  = Color.red;
-    public static final Color COLOR_CURSOR = Color.red;
-    public static final Color COLOR_BORDER = Color.black;
-    public static final Font  FONT         = new Font("Bold", Font.PLAIN, 20);
-    public static final Font  FONT_BOLD    = new Font("Bold", Font.BOLD | Font.PLAIN, 20);
-    public static final Font  FONT_SMALL   = new Font("Bold", Font.PLAIN| Font.PLAIN, 10);
+    public static final Color COLOR_FONT        = Color.BLACK; //Azul marino (0,34,141)
+    public static final Color COLOR_FONT_LIGHT  = new Color(58, 58, 58); //Gris oscuro (58,58,58)
+    public static final Color COLOR_FONDO       = new Color(255, 240, 180); //mostaza claro (232,211,132)
+    public static final Color COLOR_FONDO2      = new Color(255, 250, 220); //amarillo pastel (255,252,236)
+    public static final Color COLOR_CURSOR      = Color.blue;
+    public static final Color COLOR_BORDER      = Color.black;
+    public static final Font  FONT              = new Font("JetBrains Mono", Font.PLAIN, 20);
+    public static final Font  FONT_BOLD         = new Font("JetBrains Mono", Font.BOLD | Font.PLAIN, 20);
+    public static final Font  FONT_SMALL        = new Font("JetBrains Mono", Font.PLAIN| Font.PLAIN, 10);
     
     public static final int ALIGNMENT_LEFT  = SwingConstants.LEFT;
     public static final int ALIGNMENT_RIGHT = SwingConstants.RIGHT;

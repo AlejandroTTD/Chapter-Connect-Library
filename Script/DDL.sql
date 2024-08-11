@@ -7,7 +7,7 @@ DROP TABLE IF EXISTS Cliente;
 DROP TABLE IF EXISTS Libro;
 DROP TABLE IF EXISTS Venta;
 DROP TABLE IF EXISTS Detalle_Venta;
-DROP TABLE IF EXISTS Reembolso;
+-- DROP TABLE IF EXISTS Reembolso;
 
 CREATE TABLE Persona (
      ID_Persona   INTEGER         NOT NULL PRIMARY KEY AUTOINCREMENT
@@ -68,11 +68,11 @@ CREATE TABLE Detalle_Venta (
     ,FOREIGN KEY (ID_Venta) REFERENCES Venta(ID_Venta)
 );
 
-CREATE TABLE Reembolso (
-    ID_Reembolso    INTEGER PRIMARY KEY AUTOINCREMENT,
-    ID_Venta        INTEGER NOT NULL,
-    Fecha_Reembolso DATETIME NOT NULL,
-    Monto_Reembolso DECIMAL(10,2) NOT NULL,
-    Motivo          TEXT,
-    FOREIGN KEY (ID_Venta) REFERENCES Venta(ID_Venta)
-);
+-- CREATE TABLE Reembolso (
+--     ID_Reembolso    INTEGER PRIMARY KEY AUTOINCREMENT,
+--     ID_Venta        INTEGER NOT NULL,
+--     Fecha_Reembolso DATETIME NOT NULL,
+--     Monto_Reembolso DECIMAL(10,2) NOT NULL,
+--     Motivo          TEXT,
+--     FOREIGN KEY (ID_Venta) REFERENCES Venta(ID_Venta)
+-- );

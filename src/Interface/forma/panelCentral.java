@@ -12,12 +12,22 @@ public class panelCentral extends JFrame{
 
     public panelCentral(String tilteApp) {
         customizeComponent(tilteApp);
-        pnlApart.btnREGISTRO.addActionListener(null);
-        pnlApart.btnVENTAS.addActionListener(null);
-        pnlApart.btnCOMPRAS.addActionListener(null);
-        pnlApart.btnINVENTARIO.addActionListener(null);
-        pnlApart.btnFACTURACION.addActionListener(null);
-        pnlApart.btnEXIT.addActionListener(     e -> System.exit(0));
+        pnlApart.btnHOME.addActionListener(         e -> setPanel(new PanelInicio()));
+        pnlApart.btnREGISTRO.addActionListener(     e -> setPanel(new RegistroPanel()));
+        pnlApart.btnVENTAS.addActionListener(       e -> setPanel(new VentasPanel()));
+        pnlApart.btnCOMPRAS.addActionListener(      e -> setPanel(new ComprasPanel()));
+        pnlApart.btnINVENTARIO.addActionListener(   e -> setPanel(new InventarioPanel()));
+        pnlApart.btnFACTURACION.addActionListener(  e -> setPanel(new FacturacionPanel()));
+        pnlApart.btnEXIT.addActionListener(         e -> System.exit(0));
+    }
+
+    private void setPanel(JPanel formPanel) {
+        Container container = getContentPane();
+        container.remove(pnlInicio);
+        pnlInicio = formPanel;
+        container.add(pnlInicio, BorderLayout.CENTER);
+        revalidate();
+        repaint();
     }
 
     private void customizeComponent(String tilteApp) {

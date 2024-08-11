@@ -15,6 +15,7 @@ import Interface.Customer.newLabelText;
 
 public class PanelBotones extends JPanel{
     public newButton2
+        btnHOME         = new newButton2("Home"),
         btnREGISTRO     = new newButton2("Registro"),
         btnVENTAS       = new newButton2("Ventas"),
         btnCOMPRAS      = new newButton2("Compras"),
@@ -38,6 +39,7 @@ public class PanelBotones extends JPanel{
             e.printStackTrace();
         }
 
+        add(btnHOME);
         add(btnREGISTRO);
         add(btnVENTAS);
         add(btnCOMPRAS);

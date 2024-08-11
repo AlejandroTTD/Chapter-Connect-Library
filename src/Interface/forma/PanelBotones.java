@@ -19,7 +19,8 @@ public class PanelBotones extends JPanel{
         btnVENTAS       = new newButton2("Ventas"),
         btnCOMPRAS      = new newButton2("Compras"),
         btnINVENTARIO   = new newButton2("Inventario"),
-        btnFACTURACION  = new newButton2("Facturacion");
+        btnFACTURACION  = new newButton2("Facturacion"),
+        btnEXIT         = new newButton2("Exit");
 
     public PanelBotones(){
         customizeComponent();
@@ -42,6 +43,8 @@ public class PanelBotones extends JPanel{
         add(btnCOMPRAS);
         add(btnINVENTARIO);
         add(btnFACTURACION);
+        add(btnEXIT);
+
         add(new newLabelText("\u00A9 2024 Chapter Connect"));
     }
 }

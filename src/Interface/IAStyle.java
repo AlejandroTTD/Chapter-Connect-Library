@@ -31,19 +31,20 @@ public abstract class IAStyle {
 
     public static final URL URL_MAIN  = IAStyle.class.getResource("/Interface/Image/inicio.png.png");
     public static final URL URL_LOGO  = IAStyle.class.getResource("/Interface/Image/logo.png.png");
+    public static final URL URL_FONDO  = IAStyle.class.getResource("/Interface/Image/libreria.png");
 
     public static final CompoundBorder createBorderRect(){
-        return BorderFactory.createCompoundBorder(  new LineBorder(Color.lightGray),
+        return BorderFactory.createCompoundBorder(  new LineBorder(Color.BLACK),
                                                     new EmptyBorder(5, 5, 5, 5));
     }
 
     public static final void showMsg(String msg){
-        JOptionPane.showMessageDialog(null, msg, "😏 IABot", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(null, msg, "😏 CCLibrary", JOptionPane.INFORMATION_MESSAGE);
     }
     public static final void showMsgError(String msg){
-        JOptionPane.showMessageDialog(null, msg, "💀 IABot", JOptionPane.OK_OPTION);
+        JOptionPane.showMessageDialog(null, msg, "💀 CCLibrary", JOptionPane.OK_OPTION);
     }
     public static final boolean showConfirmYesNo(String msg){
-        return (JOptionPane.showConfirmDialog(null, msg, "😞 IABot", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION);
+        return (JOptionPane.showConfirmDialog(null, msg, "😞 CCLibrary", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION);
     }
 }

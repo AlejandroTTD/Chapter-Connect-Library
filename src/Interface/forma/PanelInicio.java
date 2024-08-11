@@ -14,7 +14,7 @@ public PanelInicio(){
 
     private void customizeComponent() {
         try {
-            ImageIcon imageIcon = new ImageIcon(IAStyle.URL_MAIN);
+            ImageIcon imageIcon = new ImageIcon(IAStyle.URL_FONDO);
             add(new JLabel(imageIcon),BorderLayout.CENTER);
         } catch (Exception e) {
             e.printStackTrace();

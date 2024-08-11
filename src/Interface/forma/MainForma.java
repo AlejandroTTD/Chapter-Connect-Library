@@ -9,14 +9,14 @@ public class MainForma extends JFrame{
 
     PanelLogin   pnLg         = new PanelLogin();
     LoginUs      pnLongi      = new LoginUs();
-    panelCentral pnlPanCent   = new panelCentral("Inicio");
-
     
     public MainForma(String tilteApp) {
     customizeComponent(tilteApp);
-        pnLg.btnLogin.addActionListener(   e -> setPanel(new LoginUs()));
-        pnLg.btnExit.addActionListener(    e -> System.exit(0));
-        pnLongi.btnEnter.addActionListener(e -> setPanel2(new panelCentral(tilteApp)));
+
+        pnLg.btnLogin.addActionListener(    e -> setPanel(new LoginUs()));
+        pnLg.btnExit.addActionListener(     e -> System.exit(0));
+
+        pnLongi.btnEnter.addActionListener( e -> setPanel2(new panelCentral(tilteApp)));
             
     }
     
@@ -31,7 +31,7 @@ public class MainForma extends JFrame{
     private void setPanel2(panelCentral panelCentral) {
         Container container = getContentPane();
         container.removeAll();
-        container.add(pnlPanCent, BorderLayout.CENTER);
+        container.add(panelCentral, BorderLayout.CENTER);
         revalidate();
         repaint();
     }
@@ -40,7 +40,7 @@ public class MainForma extends JFrame{
     setTitle(tilteApp);
         setSize(360, 415);
         setResizable(false);
-        setLocationRelativeTo(null); // Centrar en la pantalla
+        setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
         Container container = getContentPane();

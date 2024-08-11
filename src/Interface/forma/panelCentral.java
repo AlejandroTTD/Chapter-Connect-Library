@@ -17,11 +17,12 @@ public class panelCentral extends JFrame{
         pnlApart.btnCOMPRAS.addActionListener(null);
         pnlApart.btnINVENTARIO.addActionListener(null);
         pnlApart.btnFACTURACION.addActionListener(null);
+        pnlApart.btnEXIT.addActionListener(     e -> System.exit(0));
     }
 
     private void customizeComponent(String tilteApp) {
         setTitle(tilteApp);
-        setSize(1050, 500);
+        setSize(1545, 820);
         setResizable(false);
         setLocationRelativeTo(null); // Centrar en la pantalla
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

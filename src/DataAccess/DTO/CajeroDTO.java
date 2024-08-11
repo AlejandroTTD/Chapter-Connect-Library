@@ -2,20 +2,18 @@ package DataAccess.DTO;
 
 public class CajeroDTO {
     private Integer ID_Cajero  ;  
-    private Integer ID_Persona;
     private String Usuario ;
-    private String Password;
+    private String Contrasena;
     private String Estado     ;  
     private String FechaCreacion; 
     private String FechaModifica;
 
     
-    public CajeroDTO(Integer iD_Cajero, Integer iD_Persona, String usuario, String password, String estado,
+    public CajeroDTO(Integer iD_Cajero, String usuario, String contrasena, String estado,
             String fechaCreacion, String fechaModifica) {
         ID_Cajero = iD_Cajero;
-        ID_Persona = iD_Persona;
         Usuario = usuario;
-        Password = password;
+        Contrasena = contrasena;
         Estado = estado;
         FechaCreacion = fechaCreacion;
         FechaModifica = fechaModifica;
@@ -29,23 +27,17 @@ public class CajeroDTO {
     public void setID_Cajero(Integer iD_Cajero) {
         ID_Cajero = iD_Cajero;
     }
-    public Integer getID_Persona() {
-        return ID_Persona;
-    }
-    public void setID_Persona(Integer iD_Persona) {
-        ID_Persona = iD_Persona;
-    }
     public String getUsuario() {
         return Usuario;
     }
     public void setUsuario(String usuario) {
         Usuario = usuario;
     }
-    public String getPassword() {
-        return Password;
+    public String getContrasena() {
+        return Contrasena;
     }
-    public void setPassword(String password) {
-        Password = password;
+    public void setContrasena(String contrasena) {
+        contrasena = Contrasena;
     }
     public String getEstado() {
         return Estado;
@@ -70,9 +62,8 @@ public class CajeroDTO {
     public String toString() {
         return getClass().getName()
                 + "\n ID_Cajero:      " + getID_Cajero()
-                + "\n ID_Persona:     " + getID_Persona()
                 + "\n Usuario:        " + getUsuario()
-                + "\n Password:       " + getPassword()
+                + "\n Contrasena:     " + getContrasena()
                 + "\n Estado:         " + getEstado()
                 + "\n FechaCreacion:  " + getFechaCreacion()
                 + "\n FechaModifica:  " + getFechaModifica();

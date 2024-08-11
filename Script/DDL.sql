@@ -1,6 +1,5 @@
 -- database: ../Database/BDLibreria.sqlite
 
-DROP TABLE IF EXISTS Persona;
 DROP TABLE IF EXISTS Cajero;
 DROP TABLE IF EXISTS Cliente;
 DROP TABLE IF EXISTS Libro;
@@ -18,26 +17,12 @@ CREATE TABLE EntidadTipo (
     ,FechaCreacion           DATETIME      DEFAULT(datetime('now','localtime'))
     ,FechaModifica           DATETIME
 );
--- Tabla Persona
-CREATE TABLE Persona (
-     ID_Persona              INTEGER         NOT NULL PRIMARY KEY AUTOINCREMENT
-    ,ID_EntidadTipo          INTEGER         NOT NULL REFERENCES EntidadTipo (ID_EntidadTipo)
-    ,Nombre                  VARCHAR(50)      
-    ,Apellido                VARCHAR(50)     
-    ,Direccion               VARCHAR(100)    
-    ,Telefono                VARCHAR(15)     
-    ,Email                   VARCHAR(50)
-
-    ,Estado                  VARCHAR (1)     NOT NUll DEFAULT ('A')
-    ,FechaCreacion           DATETIME        DEFAULT(datetime('now','localtime'))
-    ,FechaModifica           DATETIME    
-);
 -- Tabla Cajero
 CREATE TABLE Cajero (
      ID_Cajero               INTEGER      NOT NULL PRIMARY KEY AUTOINCREMENT
-    ,ID_Persona              INTEGER      NOT NULL REFERENCES Persona (ID_Persona)
+    ,ID_EntidadTipo          INTEGER      NOT NULL REFERENCES EntidadTipo (ID_EntidadTipo)
     ,Usuario                 VARCHAR(16)  NOT NULL
-    ,Password                VARCHAR(16)  NOT NULL
+    ,Contrasena              VARCHAR(16)  NOT NULL
 
     ,Estado                  VARCHAR (1)  NOT NUll DEFAULT ('A')
     ,FechaCreacion           DATETIME     DEFAULT(datetime('now','localtime'))
@@ -47,9 +32,11 @@ CREATE TABLE Cajero (
 -- Tabla Cliente
 CREATE TABLE Cliente (
      ID_Cliente               INTEGER      NOT NULL PRIMARY KEY AUTOINCREMENT
-    ,ID_Persona               INTEGER      NOT NULL REFERENCES Persona (ID_Persona)
-    ,Fecha_Registro           DATE
-    
+    ,ID_EntidadTipo           INTEGER      NOT NULL REFERENCES EntidadTipo (ID_EntidadTipo)
+    ,Nombre                   VARCHAR(50)      
+    ,Apellido                 VARCHAR(50)     
+    ,Email                    VARCHAR(50)
+
     ,Estado                   VARCHAR (1)  NOT NUll DEFAULT ('A')
     ,FechaCreacion            DATETIME     DEFAULT(datetime('now','localtime'))
     ,FechaModifica            DATETIME

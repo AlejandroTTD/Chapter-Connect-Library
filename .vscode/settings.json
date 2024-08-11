@@ -2,6 +2,9 @@
     "java.project.sourcePaths": ["src"],
     "java.project.outputPath": "bin",
     "java.project.referencedLibraries": [
-        "lib/**/*.jar"
+        "lib/**/*.jar",
+        "Librerias/itext5-itextpdf-5.5.11.jar",
+        "Librerias/itext5-itext-pdfa-5.5.11.jar",
+        "Librerias/sqlite-jdbc-3.46.0.1.jar"
     ]
 }

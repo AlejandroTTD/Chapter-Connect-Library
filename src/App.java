@@ -8,12 +8,5 @@ public class App {
         MainForma frmMain = new MainForma("Libreria");
             frmMain.setVisible(true);
 
-        // try {
-        //     EntidadTipoDAO eTDao = new EntidadTipoDAO();
-        //     for (EntidadTipoDTO eT : eTDao.readAll())
-        //         System.out.println(eT.toString());
-        // } catch (Exception e) {
-        //     System.out.println(e.toString());
-        // }
     }
 }

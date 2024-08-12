@@ -23,6 +23,11 @@ public class ClienteDTO {
         FechaModifica = fechaModifica;
     }
     
+    public ClienteDTO(Integer iD_EntidadTipo, String nombre) {
+        this.ID_EntidadTipo = iD_EntidadTipo;
+        this.Nombre = nombre;
+    }
+
     public ClienteDTO(){}
 
     public Integer getID_Cliente() {

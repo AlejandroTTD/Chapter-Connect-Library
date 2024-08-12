@@ -1,4 +1,7 @@
+import java.sql.Connection;
+
 import DataAccess.EntidadTipoDAO;
+import DataAccess.SQLiteDataHelper;
 import DataAccess.DTO.EntidadTipoDTO;
 import Interface.forma.MainForma;
 import Interface.forma.cambioPanel;
@@ -8,7 +11,5 @@ public class App {
         cambioPanel.show();
         MainForma frmMain = new MainForma("Libreria");
         frmMain.setVisible(true);
-
-
     }
 }

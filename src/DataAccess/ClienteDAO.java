@@ -15,23 +15,42 @@ import Framework.PatException;
 
 public class ClienteDAO extends SQLiteDataHelper implements IDAO<ClienteDTO>{
 
-    @Override
-    public boolean create (ClienteDTO entity) throws Exception{
-        String query = "INSERT INTO Cliente (ID_EntidadTipo, Nombre, Apellido, Email) VALUES (?, ?, ?)";
-        try{
-            Connection conexion = openConnection();
-            PreparedStatement pstmt = conexion.prepareStatement(query);
-            pstmt.setInt(1,entity.getID_EntidadTipo());
-            pstmt.setString(2,entity.getNombre());
-            pstmt.setString(3,entity.getApellido());
-            pstmt.setString(4,entity.getEmail());
-            pstmt.executeUpdate();
-            
-            return true;
+
+    public boolean create(ClienteDTO entity) throws Exception {
+        String query = "INSERT INTO Cliente (ID_EntidadTipo, Nombre) VALUES (?, ?)";
+        try (Connection conexion = openConnection();
+                PreparedStatement pstmt = conexion.prepareStatement(query)) {
+
+            pstmt.setInt(1, entity.getID_EntidadTipo());
+            pstmt.setString(2, entity.getNombre());
+
+            int rowsAffected = pstmt.executeUpdate();
+            System.out.println("Filas afectadas: " + rowsAffected);
+
+            return rowsAffected > 0;
         } catch (SQLException e) {
-            throw new PatException(e.getMessage(),getClass().getName(),"create()");
+            // Lanzar la excepción personalizada con información adicional
+            throw new PatException(e.getMessage(), getClass().getName(), "create()");
         }
     }
+
+    // @Override
+    // public boolean create (ClienteDTO entity) throws Exception{
+    //     String query = "INSERT INTO Cliente (ID_EntidadTipo, Nombre, Apellido, Email) VALUES (?, ?, ?, ?)";
+    //     try{
+    //         Connection conexion = openConnection();
+    //         PreparedStatement pstmt = conexion.prepareStatement(query);
+    //         pstmt.setInt(1,entity.getID_EntidadTipo());
+    //         pstmt.setString(2,entity.getNombre());
+    //         pstmt.setString(3,entity.getApellido());
+    //         pstmt.setString(4,entity.getEmail());
+    //         pstmt.executeUpdate();
+            
+    //         return true;
+    //     } catch (SQLException e) {
+    //         throw new PatException(e.getMessage(),getClass().getName(),"create()");
+    //     }
+    // }
 
     @Override
     public List<ClienteDTO> readAll() throws Exception {

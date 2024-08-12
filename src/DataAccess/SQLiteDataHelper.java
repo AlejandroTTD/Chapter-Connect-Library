@@ -5,23 +5,26 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public abstract class SQLiteDataHelper {
-    private static String DBPathConnection = "jdbc:sqlite:Database//BDLibreria.sqlite";
-    private static Connection conexion = null;
 
-    protected static synchronized Connection openConnection() throws Exception{
+    private static String DBPathConnection = "jdbc:sqlite:DataBase/BDLibreria.sqlite";
+    private static Connection conn = null;
+
+    protected static synchronized Connection openConnection() throws Exception {
         try {
-            if(conexion == null)
-                conexion = DriverManager.getConnection(DBPathConnection);
+            if (conn == null) {
+                conn = DriverManager.getConnection(DBPathConnection);
+            }
         } catch (SQLException e) {
             throw e;
         }
-        return conexion;
+        return conn;
     }
 
-    protected static void closeConnection() throws Exception{
+    protected static void closeConnection() throws Exception {
         try {
-            if(conexion != null)
-               conexion.close();
+            if (conn != null) {
+                conn.close();
+            }
         } catch (Exception e) {
             throw e;
         }

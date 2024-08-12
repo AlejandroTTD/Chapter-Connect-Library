@@ -1,18 +1,38 @@
 package Interface.forma;
 
 import javax.swing.*;
+
+import BusinessLogic.ClienteBL;
+
 import java.awt.*;
 import Interface.Customer.newButton;
 import Interface.Customer.newButton2;
 
+import DataAccess.DTO.ClienteDTO;
+import DataAccess.ClienteDAO;
+import BusinessLogic.ClienteBL;
+
 public class VentasPanel extends JPanel {
     private newButton btnConsumidorFinal, btnConFactura;
     private JTextField txtCodigoBarras;
+    private JTextField nombreClienteField;
     private JList<String> listaProductos;
     private DefaultListModel<String> modeloLista;
     private JTextField txtCantidad;
     private JLabel lblTotal;
     private newButton2 btnAgregar, btnEliminar, btnConfirmar, btnCancelar;
+
+    private ClienteBL clienteBL = new ClienteBL();
+
+
+    private boolean agregarCliente(ClienteDTO cliente) throws Exception {
+        try {
+            return clienteBL.create(cliente);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
 
     public VentasPanel() {
         setLayout(new BorderLayout());
@@ -76,7 +96,11 @@ public class VentasPanel extends JPanel {
 
         btnConFactura.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                abrirDialogoFactura();
+                try {
+                    abrirDialogoFactura();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
         });
 
@@ -113,12 +137,26 @@ public class VentasPanel extends JPanel {
         btnConFactura.setEnabled(true);
     }
 
-    private void abrirDialogoFactura() {
+    private void abrirDialogoFactura() throws Exception {
         String nombreCliente = JOptionPane.showInputDialog(this, "Ingrese el nombre del cliente:");
+
         if (nombreCliente != null && !nombreCliente.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Venta registrada para: " + nombreCliente);
+
+            Integer idEntidadTipo = 1; // Aquí defines el ID_EntidadTipo según tu lógica
+            ClienteDTO cliente = new ClienteDTO(idEntidadTipo, nombreCliente);
+
+            boolean clienteAgregado = agregarCliente(cliente);
+            if (clienteAgregado) {
+                JOptionPane.showMessageDialog(this, "Cliente agregado a la base de datos: " + nombreCliente);
+            } else {
+                JOptionPane.showMessageDialog(this, "Error al agregar cliente a la base de datos.");
+            }
+
             btnConFactura.setEnabled(false);
             btnConsumidorFinal.setEnabled(true);
+        } else {
+            JOptionPane.showMessageDialog(this, "Nombre de cliente inválido. Operación cancelada.");
         }
     }
 

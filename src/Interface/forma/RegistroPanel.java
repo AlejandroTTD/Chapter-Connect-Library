@@ -5,7 +5,7 @@ import Interface.Customer.newButton;
 import java.awt.*;
 
 public class RegistroPanel extends JPanel {
-    private JTextField txtUsuario, txtEmail;
+    private JTextField txtUsuario, txtContasenya;
     private newButton btnNuevo, btnModificar, btnEliminar, btnGuardar, btnCancelar;
     private JList<String> listaUsuarios;
     private DefaultListModel<String> modeloLista;
@@ -19,9 +19,9 @@ public class RegistroPanel extends JPanel {
         panelDatos.add(new JLabel("Usuario:"));
         txtUsuario = new JTextField(20);
         panelDatos.add(txtUsuario);
-        panelDatos.add(new JLabel("Email:"));
-        txtEmail = new JTextField(20);
-        panelDatos.add(txtEmail);
+        panelDatos.add(new JLabel("Contaseña:"));
+        txtContasenya = new JTextField(20);
+        panelDatos.add(txtContasenya);
 
         JPanel panelBotones = new JPanel(new FlowLayout(FlowLayout.CENTER));
         btnNuevo = new newButton("Nuevo");
@@ -66,6 +66,6 @@ public class RegistroPanel extends JPanel {
 
     private void limpiarCampos() {
         txtUsuario.setText("");
-        txtEmail.setText("");
+        txtContasenya.setText("");
     }
 }

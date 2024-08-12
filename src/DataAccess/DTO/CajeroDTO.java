@@ -3,7 +3,7 @@ package DataAccess.DTO;
 public class CajeroDTO {
     private Integer ID_Cajero  ;  
     private Integer ID_EntidadTipo;
-    private String Usuario ;
+    private String Usuario ; 
     private String Contrasena;
     private String Estado     ;  
     private String FechaCreacion; 

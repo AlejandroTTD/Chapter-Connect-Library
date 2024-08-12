@@ -30,9 +30,16 @@ Bienvenido al Chapter Connect. Este software está diseñado para ayudar a admin
 
 ### **2. Ingreso al Sistema**
 1. Abre la aplicación.
+
+![alt text](image.png)
+
 2. Haz clic en “Login”
+
+![alt text](image-1.png)
+
 3. En la pantalla de inicio, ingresa tu nombre de usuario y contraseña.
 4. Haz clic en "Enter".
+
 
 ### **3. Pantalla de Inicio**
 Después de iniciar sesión, verás el menú principal con las siguientes opciones:
@@ -42,6 +49,8 @@ Después de iniciar sesión, verás el menú principal con las siguientes opcion
 - Inventario
 - Facturación
 - Exit
+
+![alt text](image-2.png)
 
 ### **4. Registros**
 - *Añadir un Nuevo Cliente*
@@ -64,6 +73,8 @@ Después de iniciar sesión, verás el menú principal con las siguientes opcion
 2. Ingresa Usuario, Contraseña.
 3. Haz clic en “Cancelar”.
 
+![alt text](image-3.png)
+
 ### **5. Ventas**
 -  *Realizar una Venta*
 1. Ve a "Ventas".
@@ -74,6 +85,8 @@ Después de iniciar sesión, verás el menú principal con las siguientes opcion
 6. Repite los pasos 2-5 para añadir más libros.
 7. Haz clic en "Finalizar Venta".
 8. Selecciona el método de pago y completa la transacción.
+
+![alt text](image-4.png)
 
 ### **6. Compras**	
 -  *Realizar una Compra*
@@ -86,11 +99,14 @@ Después de iniciar sesión, verás el menú principal con las siguientes opcion
 7. Haz clic en "Finalizar Compra".
 8. Selecciona el método de pago y completa la transacción.
 
+
 ### **7. Inventario**
 - *Añadir un Nuevo Libro*
 1. Ve a "Gestión de Libros" > "Añadir Libro".
 2. Completa los campos requeridos: Título, Autor, ISBN, Precio, Cantidad en Stock.
 3. Haz clic en "Guardar".
+
+![alt text](image-5.png)
 
  - *Buscar un Libro*
 1. Ve a "Gestión de Libros" > "Buscar Libro".
@@ -114,12 +130,22 @@ Después de iniciar sesión, verás el menú principal con las siguientes opcion
 2. Seleccionar:
   	- Consumidor Final.
 	- Con Factura.
+
+![alt text](image-6.png)
+
 2.1. Consumidor Final
-	- Finaliza la compra.
+- Finaliza la compra.
+
+![alt text](image-7.png)
+
 2.2. Con Factura
-	- Ingresar Cliente
-    - Haz clic en "Generar Factura".
-    - Visualiza de la Factura y envió al correo electrónico.
+
+![alt text](image-8.png)
+
+- Ingresar Cliente.
+- Haz clic en "Ok".
+- Visualiza de la Factura y envió al correo electrónico.
+
 
 ### **9. Exit**
 Salir del sistema

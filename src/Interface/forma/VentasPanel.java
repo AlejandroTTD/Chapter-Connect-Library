@@ -4,6 +4,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
+
 import Interface.Customer.newButton;
 import Interface.Customer.newButton2;
 import Interface.IAStyle;
@@ -14,9 +17,14 @@ public class VentasPanel extends JPanel {
     private JButton guardarButton;
     private JButton eliminarButton;
     private JTextArea resultadoArea;
+    private JList<String> historialList;
+    private List<String> historialBusquedas;
+    private int ultimoId;
 
     public VentasPanel() {
         setLayout(new BorderLayout());
+        historialBusquedas = new ArrayList<>();
+        ultimoId = 123;
         initComponents();
     }
 
@@ -34,6 +42,16 @@ public class VentasPanel extends JPanel {
         resultadoArea.setEditable(false);
         JScrollPane scrollPane = new JScrollPane(resultadoArea);
 
+        // Panel para el historial
+        historialList = new JList<>();
+        JScrollPane historialScrollPane = new JScrollPane(historialList);
+        historialScrollPane.setPreferredSize(new Dimension(200, 100));
+
+        // Panel para contener el área de resultados y el historial
+        JPanel centerPanel = new JPanel(new BorderLayout());
+        centerPanel.add(scrollPane, BorderLayout.CENTER);
+        centerPanel.add(historialScrollPane, BorderLayout.EAST);
+
         // Panel inferior para botones de accion
         JPanel accionesPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
         guardarButton = new newButton2("Guardar cambios");
@@ -43,7 +61,7 @@ public class VentasPanel extends JPanel {
 
         // Agregar componentes al panel principal
         add(busquedaPanel, BorderLayout.NORTH);
-        add(scrollPane, BorderLayout.CENTER);
+        add(centerPanel, BorderLayout.CENTER);
         add(accionesPanel, BorderLayout.SOUTH);
 
         // Configurar listeners
@@ -71,14 +89,25 @@ public class VentasPanel extends JPanel {
 
     private void buscarVenta() {
         String busqueda = busquedaField.getText();
-        // Logica para buscar la venta
         if (busqueda.isEmpty()) {
             resultadoArea.setText("Por favor, ingrese un termino de busqueda.");
         } else {
-            // implementar busqueda real en la base de datos
-            resultadoArea.setText("Resultados de la búsqueda para: " + busqueda + "\n" +
-                    "Venta encontrada: ID 12345, Fecha: 2024-08-12, Total: $25");
+            ultimoId++;
+
+            String resultado = String.format("Resultados de la busqueda para: %s\n" +
+                    "Venta encontrada: ID %d, Fecha: 2024-08-12, Total: $25",
+                    busqueda, ultimoId);
+
+            resultadoArea.setText(resultado);
+
+            // Registrar la búsqueda en el historial
+            historialBusquedas.add(busqueda + " - ID: " + ultimoId);
+            actualizarHistorialEnPantalla();
         }
+    }
+
+    private void actualizarHistorialEnPantalla() {
+        historialList.setListData(historialBusquedas.toArray(new String[0]));
     }
 
     private void guardarCambios() {

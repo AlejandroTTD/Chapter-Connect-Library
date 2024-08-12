@@ -71,17 +71,43 @@ public class FacturacionPanel extends JPanel {
 
     private void buscarVenta() {
         String busqueda = busquedaField.getText();
-        // aqui logica para buscar la venta
-        resultadoArea.setText("Buscando venta: " + busqueda);
+        // Logica para buscar la venta
+        if (busqueda.isEmpty()) {
+            resultadoArea.setText("Por favor, ingrese un termino de busqueda.");
+        } else {
+            // implementar busqueda real en la base de datos
+            resultadoArea.setText("Resultados de la búsqueda para: " + busqueda + "\n" +
+                    "Venta encontrada: ID 12345, Fecha: 2024-08-12, Total: $100.00");
+        }
     }
 
     private void guardarCambios() {
-        // aqui logica para guardar los cambios
-        resultadoArea.setText("Guardando cambios...");
+        // Logica para guardar los cambios
+        String datosActuales = resultadoArea.getText();
+        if (datosActuales.contains("Venta encontrada")) {
+            // implementar logica real para guardar en la base de datos
+            resultadoArea.setText("Cambios guardados exitosamente.");
+        } else {
+            resultadoArea.setText("No hay datos para guardar. Realice una busqueda primero.");
+        }
     }
 
     private void eliminarVenta() {
-        // aqui logica para eliminar la venta
-        resultadoArea.setText("Eliminando venta...");
+        // logica para eliminar la venta
+        String datosActuales = resultadoArea.getText();
+        if (datosActuales.contains("Venta encontrada")) {
+            // implementar logica real para eliminar de la base de datos
+            int opcion = JOptionPane.showConfirmDialog(this,
+                    "¿Esta seguro de que desea eliminar esta venta?",
+                    "Confirmar eliminacion",
+                    JOptionPane.YES_NO_OPTION);
+            if (opcion == JOptionPane.YES_OPTION) {
+                resultadoArea.setText("Venta eliminada exitosamente.");
+            } else {
+                resultadoArea.setText("Eliminacion cancelada.");
+            }
+        } else {
+            resultadoArea.setText("No hay venta seleccionada para eliminar.");
+        }
     }
 }

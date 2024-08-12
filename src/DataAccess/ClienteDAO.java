@@ -17,12 +17,14 @@ public class ClienteDAO extends SQLiteDataHelper implements IDAO<ClienteDTO>{
 
 
     public boolean create(ClienteDTO entity) throws Exception {
-        String query = "INSERT INTO Cliente (ID_EntidadTipo, Nombre) VALUES (?, ?)";
+        String query = "INSERT INTO Cliente (ID_EntidadTipo, Nombre, Apellido, Email) VALUES (?, ?, ?, ?)";
         try (Connection conexion = openConnection();
                 PreparedStatement pstmt = conexion.prepareStatement(query)) {
 
             pstmt.setInt(1, entity.getID_EntidadTipo());
             pstmt.setString(2, entity.getNombre());
+            pstmt.setString(3, entity.getApellido());
+            pstmt.setString(4, entity.getEmail());
 
             int rowsAffected = pstmt.executeUpdate();
             System.out.println("Filas afectadas: " + rowsAffected);

@@ -37,40 +37,31 @@ public class Detalle_VentaDAO extends SQLiteDataHelper implements IDAO <Detalle_
 
     @Override
     public List<Detalle_VentaDTO> readAll() throws Exception {
-        List <Detalle_VentaDTO> lst = new ArrayList<>();
-        String query = "SELECT ID_Detalle_Venta  "
-                    +", ID_Cajero    "
-                    +", ID_Cliente    "
-                    +", ID_Libro    "
-                    +", FechaVenta      "
-                    +", Cantidad           "
-                    +", PrecioUnitario        "
-                    +", Total            "
-                    +", Estado            "
-                    +", FechaCreacion     "
-                    +", FechaModifica     "
-                    +"FROM Detalle_Venta         "
-                    +"WHERE Estado = 'A'  ";
-        try{
+        List<Detalle_VentaDTO> lst = new ArrayList<>();
+        String query = "SELECT ID_Detalle_Venta, ID_Cajero, ID_Cliente, ID_Libro, FechaVenta, Cantidad, PrecioUnitario, Total, Estado, FechaCreacion, FechaModifica "
+                + "FROM Detalle_Venta "
+                + "WHERE Estado = 'A'";
+        try {
             Connection conexion = openConnection();
             Statement stmt = conexion.createStatement();
             ResultSet rs = stmt.executeQuery(query);
 
-            while(rs.next()){
-                Detalle_VentaDTO detalle_VentaDTO = new Detalle_VentaDTO(rs.getInt(1),
-                            rs.getInt(2),
-                            rs.getInt(3),
-                            rs.getInt(4),
-                            rs.getString(5),
-                            rs.getInt(6),
-                            rs.getFloat(7),
-                            rs.getFloat(8),
-                            rs.getString(9),
-                            rs.getString(10),
-                            rs.getString(11));
+            while (rs.next()) {
+                Detalle_VentaDTO detalle_VentaDTO = new Detalle_VentaDTO(
+                        rs.getObject("ID_Detalle_Venta"),
+                        rs.getInt("ID_Cajero"),
+                        rs.getInt("ID_Cliente"),
+                        rs.getInt("ID_Libro"),
+                        rs.getString("FechaVenta"),
+                        rs.getInt("Cantidad"),
+                        rs.getFloat("PrecioUnitario"),
+                        rs.getDouble("Total"),
+                        rs.getString("Estado"),
+                        rs.getString("FechaCreacion"),
+                        rs.getObject("FechaModifica"));
                 lst.add(detalle_VentaDTO);
             }
-        } catch (SQLException e){
+        } catch (SQLException e) {
             throw new PatException(e.getMessage(), getClass().getName(), "readAll()");
         }
         return lst;
@@ -120,40 +111,37 @@ public class Detalle_VentaDAO extends SQLiteDataHelper implements IDAO <Detalle_
 
     @Override
     public Detalle_VentaDTO readBy(Integer id) throws Exception {
-        Detalle_VentaDTO detalle_VentaDTO = new Detalle_VentaDTO();
-        String query = "SELECT ID_Detalle_Venta  "
-                + ", ID_Cajero    "
-                + ", ID_Cliente    "
-                + ", ID_Libro    "
-                + ", FechaVenta      "
-                + ", Cantidad           "
-                + ", PrecioUnitario        "
-                + ", Total            "
-                + ", Estado            "
-                + ", FechaCreacion     "
-                + ", FechaModifica     "
-                + "FROM Detalle_Venta WHERE Estado = 'A' AND ID_Libro = " + id;
-        try{
-            Connection conexion = openConnection();
-            Statement stmt = conexion.createStatement();
-            ResultSet rs = stmt.executeQuery(query);
+        Detalle_VentaDTO detalle_VentaDTO = null; // Inicializa a null
+        String query = "SELECT ID_Detalle_Venta, ID_Cajero, ID_Cliente, ID_Libro, FechaVenta, Cantidad, PrecioUnitario, Total, Estado, FechaCreacion, FechaModifica "
+                + "FROM Detalle_Venta "
+                + "WHERE Estado = 'A' AND ID_Libro = ?";
 
-            while(rs.next()){
-                detalle_VentaDTO = new Detalle_VentaDTO(rs.getInt(1),
-                                rs.getInt(2),
-                                rs.getInt(3),
-                                rs.getInt(4),
-                                rs.getString(5),
-                                rs.getInt(6),
-                                rs.getFloat(7),
-                                rs.getFloat(8),
-                                rs.getString(9),
-                                rs.getString(10),
-                                rs.getString(11));
+        try (Connection conexion = openConnection();
+                PreparedStatement pstmt = conexion.prepareStatement(query)) {
+
+            pstmt.setInt(1, id); // Establece el parámetro en la consulta
+
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if (rs.next()) {
+                    detalle_VentaDTO = new Detalle_VentaDTO(
+                            rs.getObject("ID_Detalle_Venta"),
+                            rs.getInt("ID_Cajero"),
+                            rs.getInt("ID_Cliente"),
+                            rs.getInt("ID_Libro"),
+                            rs.getString("FechaVenta"),
+                            rs.getInt("Cantidad"),
+                            rs.getFloat("PrecioUnitario"),
+                            rs.getDouble("Total"),
+                            rs.getString("Estado"),
+                            rs.getString("FechaCreacion"),
+                            rs.getObject("FechaModifica"));
+                }
             }
         } catch (SQLException e) {
             throw new PatException(e.getMessage(), getClass().getName(), "readBy()");
         }
+
         return detalle_VentaDTO;
     }
+
 }

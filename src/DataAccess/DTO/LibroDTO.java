@@ -39,6 +39,21 @@ public class LibroDTO {
 
     public LibroDTO(){}
 
+    public LibroDTO(String codigoB){
+        this.codigoBarra = codigoB;
+    }
+    public LibroDTO(int idLibro, String titulo, String autor, String genero, String editorial, String anioPublicacionn,
+            float precioVenta, String codigoBarrass) {
+        this.ID_Libro = idLibro;
+        this.titulo = titulo;
+        this.autor = autor;
+        this.genero = genero;
+        this.editorial = editorial;
+        this.anioPublicacion = anioPublicacionn;
+        this.precioVenta = precioVenta;
+        this.codigoBarra = codigoBarrass;
+    }
+
     public Integer getID_Libro() {
         return ID_Libro;
     }

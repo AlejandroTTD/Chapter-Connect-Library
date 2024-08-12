@@ -23,9 +23,11 @@ public class ClienteDTO {
         FechaModifica = fechaModifica;
     }
     
-    public ClienteDTO(Integer iD_EntidadTipo, String nombre) {
+    public ClienteDTO(Integer iD_EntidadTipo, String nombre,String apellido, String email) {
         this.ID_EntidadTipo = iD_EntidadTipo;
         this.Nombre = nombre;
+        this.Apellido = apellido;
+        this.Email = email;
     }
 
     public ClienteDTO(){}

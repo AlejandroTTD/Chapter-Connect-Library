@@ -31,6 +31,22 @@ public class Detalle_VentaDTO {
 
     public Detalle_VentaDTO(){}
 
+    public Detalle_VentaDTO(Object iD_Detalle_Venta2, int idCajero, int iD_Cliente2, Integer id_Libro2, String format,
+            Integer nroUnidades, Float precioVenta, double total2, String estado2, String format2,
+            Object fechaModifica2) {
+        this.ID_Detalle_Venta = (iD_Detalle_Venta2 instanceof Integer) ? (Integer) iD_Detalle_Venta2 : null;
+        this.ID_Cajero = idCajero;
+        this.ID_Cliente = iD_Cliente2;
+        this.ID_Libro = id_Libro2;
+        this.FechaVenta = format;
+        this.Cantidad = nroUnidades;
+        this.PrecioUnitario = precioVenta;
+        this.Total = (float) total2;
+        this.Estado = estado2;
+        this.FechaCreacion = format2;
+        this.FechaModifica = (fechaModifica2 instanceof String) ? (String) fechaModifica2 : null;
+    }
+
     public Integer getID_Detalle_Venta() {
         return ID_Detalle_Venta;
     }

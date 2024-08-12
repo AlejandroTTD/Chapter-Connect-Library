@@ -17,3 +17,8 @@ INSERT INTO Cajero
 INSERT INTO Libro
 (ID_Proveedor,titulo,autor,genero,editorial,anioPublicacion,precioVenta,precioCompra,codigoBarra,nroUnidades) VALUES
 (1,'LibroX','AutorX','GeneroX','EditorialX','2020',100.32,53.12,'125172231',10);
+
+
+INSERT INTO Libro
+(ID_Proveedor,titulo,autor,genero,editorial,anioPublicacion,precioVenta,precioCompra,codigoBarra,nroUnidades) VALUES
+(1,'LibroY','AutorY','GeneroY','EditorialY','2020',12.253,123.12,'12514121',5);

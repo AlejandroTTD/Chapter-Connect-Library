@@ -9,7 +9,9 @@ public class LibroBL {
     private LibroDTO libro;
     private LibroDAO libroDAO;
 
-    public LibroBL(){}
+    public LibroBL(){
+        libroDAO = new LibroDAO();
+    }
 
     public boolean create(LibroDTO libroDTO) throws Exception{
         return libroDAO.create(libroDTO);

@@ -106,13 +106,13 @@ public class CajeroDAO extends SQLiteDataHelper implements IDAO<CajeroDTO>{
     public CajeroDTO readBy(Integer id) throws Exception {
         CajeroDTO cajeroDTO = new CajeroDTO();
         String query = "SELECT ID_Cajero   "
-                    +", ID_Entidad Tipo    "
+                    +", ID_EntidadTipo    "
                     +", Usuario "
                     +", Contrasena "
                     +", Estado "
                     +", FechaCreacion "
                     +", FechaModifica "
-                    +"FROM Cajero WHERE Estado = 'A' AND ID_Cajero = " + id;
+                    +"FROM Cajero WHERE Estado = 'A' AND ID_EntidadTipo = " + id;
         try{
             Connection conexion = openConnection();
             Statement stmt = conexion.createStatement();
@@ -127,7 +127,7 @@ public class CajeroDAO extends SQLiteDataHelper implements IDAO<CajeroDTO>{
                                 rs.getString(6),
                                 rs.getString(7));
             }
-        } catch (Exception e) {
+        } catch (SQLException e) {
             throw new PatException(e.getMessage(), getClass().getName(), "readBy()");
         }
         return cajeroDTO;

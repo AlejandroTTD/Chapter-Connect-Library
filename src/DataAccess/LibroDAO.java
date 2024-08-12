@@ -16,7 +16,7 @@ public class LibroDAO extends SQLiteDataHelper implements IDAO_B <LibroDTO>{
 
     @Override
     public boolean create(LibroDTO entity) throws Exception {
-        String query = " INSERT INTO Proveedor (ID_Proveedor, titulo, autor, genero, editorial, anioPublicacion, precioVenta, precioCompra, codigoBarra, nroUnidades, FechaEntrega) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String query = " INSERT INTO Proveedor (ID_Proveedor, titulo, autor, genero, editorial, anioPublicacion, precioVenta, precioCompra, codigoBarra, nroUnidades) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         try {
             Connection conexion = openConnection();
             PreparedStatement pstmt = conexion.prepareStatement(query);
@@ -30,7 +30,6 @@ public class LibroDAO extends SQLiteDataHelper implements IDAO_B <LibroDTO>{
             pstmt.setFloat(8, entity.getPrecioCompra());
             pstmt.setString(9, entity.getCodigoBarra());
             pstmt.setInt(10, entity.getNroUnidades());
-            pstmt.setString(11, entity.getFechaEntrega());
             pstmt.executeUpdate();
 
             return true;
@@ -53,7 +52,6 @@ public class LibroDAO extends SQLiteDataHelper implements IDAO_B <LibroDTO>{
                     +", precioCompra            "
                     +", codigoBarra            "
                     +", nroUnidades            "
-                    +", FechaEntrega            "
                     +", Estado            "
                     +", FechaCreacion     "
                     +", FechaModifica     "
@@ -78,8 +76,7 @@ public class LibroDAO extends SQLiteDataHelper implements IDAO_B <LibroDTO>{
                             rs.getInt(11),
                             rs.getString(12),
                             rs.getString(13),
-                            rs.getString(14),
-                            rs.getString(15));
+                            rs.getString(14));
                 lst.add(libroDTO);
             }
         } catch (SQLException e){
@@ -92,7 +89,7 @@ public class LibroDAO extends SQLiteDataHelper implements IDAO_B <LibroDTO>{
     public boolean update(LibroDTO entity) throws Exception {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd:mm:ss");
         LocalDateTime now = LocalDateTime.now();
-        String query = "UPDATE Libro SET ID_Proveedor = ?, titulo = ?, autor = ?, genero = ?, editorial = ?, anioPublicacion = ?, precioVenta = ?, precioCompra = ?, nroUnidades = ?, FechaEntrega = ?, FechaModifica = ? WHERE codigoBarra = ?";
+        String query = "UPDATE Libro SET ID_Proveedor = ?, titulo = ?, autor = ?, genero = ?, editorial = ?, anioPublicacion = ?, precioVenta = ?, precioCompra = ?, nroUnidades = ?, FechaModifica = ? WHERE codigoBarra = ?";
 
         try {
             Connection conexion = openConnection();
@@ -107,9 +104,8 @@ public class LibroDAO extends SQLiteDataHelper implements IDAO_B <LibroDTO>{
             pstmt.setFloat(7, entity.getPrecioVenta());
             pstmt.setFloat(8, entity.getPrecioCompra());
             pstmt.setInt(9, entity.getNroUnidades());
-            pstmt.setString(10, entity.getFechaEntrega());
-            pstmt.setString(11, dtf.format(now));
-            pstmt.setString(12, entity.getCodigoBarra());
+            pstmt.setString(10, dtf.format(now));
+            pstmt.setString(11, entity.getCodigoBarra());
             pstmt.executeUpdate();
 
             return true;
@@ -147,7 +143,6 @@ public class LibroDAO extends SQLiteDataHelper implements IDAO_B <LibroDTO>{
                 + ", precioCompra            "
                 + ", codigoBarra            "
                 + ", nroUnidades            "
-                + ", FechaEntrega            "
                 + ", Estado            "
                 + ", FechaCreacion     "
                 + ", FechaModifica     "
@@ -171,8 +166,7 @@ public class LibroDAO extends SQLiteDataHelper implements IDAO_B <LibroDTO>{
                         rs.getInt(11),
                         rs.getString(12),
                         rs.getString(13),
-                        rs.getString(14),
-                        rs.getString(15));
+                        rs.getString(14));
             }
         } catch (SQLException e) {
             throw new PatException(e.getMessage(), getClass().getName(), "readBy()");

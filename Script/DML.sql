@@ -15,5 +15,5 @@ INSERT INTO Cajero
 (1,'UserX','PasswordX');
 
 INSERT INTO Libro
-(ID_Proveedor,titulo,autor,genero,editorial,anioPublicacion,precioVenta,precioCompra,codigoBarra,nroUnidades,FechaEntrega) VALUES
-(1,'LibroX','AutorX','GeneroX','EditorialX','2020',100.32,53.12,'125172231',10,'2020-01-12');
+(ID_Proveedor,titulo,autor,genero,editorial,anioPublicacion,precioVenta,precioCompra,codigoBarra,nroUnidades) VALUES
+(1,'LibroX','AutorX','GeneroX','EditorialX','2020',100.32,53.12,'125172231',10);

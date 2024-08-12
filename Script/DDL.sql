@@ -65,7 +65,6 @@ CREATE TABLE Libro (
     ,precioCompra             FLOAT
     ,codigoBarra              VARCHAR(20)  UNIQUE NOT NULL
     ,nroUnidades              INTEGER
-    ,FechaEntrega             DATE         NOT NULL
 
     ,Estado                   VARCHAR (1)  NOT NUll DEFAULT ('A')
     ,FechaCreacion            DATETIME     DEFAULT(datetime('now','localtime'))

@@ -12,7 +12,6 @@ public class LibroDTO {
     private Float precioCompra;
     private String codigoBarra;
     private Integer nroUnidades   ; 
-    private String FechaEntrega;
     private String Estado;
     private String FechaCreacion ; 
     private String FechaModifica;
@@ -21,7 +20,7 @@ public class LibroDTO {
     
     public LibroDTO(Integer iD_Libro, Integer iD_Proveedor, String titulo, String autor, String genero, String editorial,
             String anioPublicacion, Float precioVenta, Float precioCompra, String codigoBarra, Integer nroUnidades,
-            String fechaEntrega, String estado, String fechaCreacion, String fechaModifica) {
+             String estado, String fechaCreacion, String fechaModifica) {
         ID_Libro = iD_Libro;
         ID_Proveedor = iD_Proveedor;
         this.titulo = titulo;
@@ -33,7 +32,6 @@ public class LibroDTO {
         this.precioCompra = precioCompra;
         this.codigoBarra = codigoBarra;
         this.nroUnidades = nroUnidades;
-        FechaEntrega = fechaEntrega;
         Estado = estado;
         FechaCreacion = fechaCreacion;
         FechaModifica = fechaModifica;
@@ -107,12 +105,6 @@ public class LibroDTO {
     public void setNroUnidades(Integer nroUnidades) {
         this.nroUnidades = nroUnidades;
     }
-    public String getFechaEntrega() {
-        return FechaEntrega;
-    }
-    public void setFechaEntrega(String fechaEntrega) {
-        FechaEntrega = fechaEntrega;
-    }
     public String getEstado() {
         return Estado;
     }
@@ -145,7 +137,6 @@ public class LibroDTO {
                 + "\n PrecioCompra:      " + getPrecioCompra()
                 + "\n CodigoBarras:      " + getCodigoBarra()
                 + "\n NroUnidades:       " + getNroUnidades()
-                + "\n FechaEntrega:      " + getFechaEntrega()
                 + "\n Estado:            " + getEstado()
                 + "\n FechaCreacion:     " + getFechaCreacion()
                 + "\n FechaModifica:     " + getFechaModifica();

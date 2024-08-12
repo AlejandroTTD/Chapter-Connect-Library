@@ -6,15 +6,15 @@ public class Detalle_VentaDTO {
     private Integer ID_Cliente     ; 
     private Integer ID_Libro;
     private String FechaVenta    ;  
-    private String Cantidad;
-    private String PrecioUnitario; 
-    private String Total;
+    private Integer Cantidad;
+    private Float PrecioUnitario; 
+    private Float Total;
     private String Estado        ;  
     private String FechaCreacion ;
     private String FechaModifica;
 
     public Detalle_VentaDTO(Integer iD_Detalle_Venta, Integer iD_Cajero, Integer iD_Cliente, Integer iD_Libro,
-            String fechaVenta, String cantidad, String precioUnitario, String total, String estado,
+            String fechaVenta, Integer cantidad, Float precioUnitario, Float total, String estado,
             String fechaCreacion, String fechaModifica) {
         ID_Detalle_Venta = iD_Detalle_Venta;
         ID_Cajero = iD_Cajero;
@@ -61,22 +61,22 @@ public class Detalle_VentaDTO {
     public void setFechaVenta(String fechaVenta) {
         FechaVenta = fechaVenta;
     }
-    public String getCantidad() {
+    public Integer getCantidad() {
         return Cantidad;
     }
-    public void setCantidad(String cantidad) {
+    public void setCantidad(Integer cantidad) {
         Cantidad = cantidad;
     }
-    public String getPrecioUnitario() {
+    public Float getPrecioUnitario() {
         return PrecioUnitario;
     }
-    public void setPrecioUnitario(String precioUnitario) {
+    public void setPrecioUnitario(Float precioUnitario) {
         PrecioUnitario = precioUnitario;
     }
-    public String getTotal() {
+    public Float getTotal() {
         return Total;
     }
-    public void setTotal(String total) {
+    public void setTotal(Float total) {
         Total = total;
     }
     public String getEstado() {

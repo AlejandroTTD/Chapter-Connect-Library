@@ -4,16 +4,16 @@ public class Detalle_CompraDTO {
     private Integer ID_Detalle_Compra ;
     private Integer ID_Proveedor;
     private Integer ID_Libro       ;  
-    private String Cantidad;
-    private String PrecioUnitario ;  
-    private String Total;
+    private Integer Cantidad;
+    private Float PrecioUnitario ;  
+    private Float Total;
     private String FechaCompra    ;  
     private String Estado ;
     private String FechaCreacion ;
     private String FechaModifica;
 
-    public Detalle_CompraDTO(Integer iD_Detalle_Compra, Integer iD_Proveedor, Integer iD_Libro, String cantidad,
-            String precioUnitario, String total, String fechaCompra, String estado, String fechaCreacion,
+    public Detalle_CompraDTO(Integer iD_Detalle_Compra, Integer iD_Proveedor, Integer iD_Libro, Integer cantidad,
+            Float precioUnitario, Float total, String fechaCompra, String estado, String fechaCreacion,
             String fechaModifica) {
         ID_Detalle_Compra = iD_Detalle_Compra;
         ID_Proveedor = iD_Proveedor;
@@ -47,22 +47,22 @@ public class Detalle_CompraDTO {
     public void setID_Libro(Integer iD_Libro) {
         ID_Libro = iD_Libro;
     }
-    public String getCantidad() {
+    public Integer getCantidad() {
         return Cantidad;
     }
-    public void setCantidad(String cantidad) {
+    public void setCantidad(Integer cantidad) {
         Cantidad = cantidad;
     }
-    public String getPrecioUnitario() {
+    public Float getPrecioUnitario() {
         return PrecioUnitario;
     }
-    public void setPrecioUnitario(String precioUnitario) {
+    public void setPrecioUnitario(Float precioUnitario) {
         PrecioUnitario = precioUnitario;
     }
-    public String getTotal() {
+    public Float getTotal() {
         return Total;
     }
-    public void setTotal(String total) {
+    public void setTotal(Float total) {
         Total = total;
     }
     public String getFechaCompra() {

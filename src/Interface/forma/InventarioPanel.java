@@ -71,12 +71,19 @@ public class InventarioPanel extends JPanel {
         btnEliminar.addActionListener(e -> {
         });
         
-        btnGuardar.addActionListener(e -> {
+        btnGuardar.addMouseListener(new java.awt.event.MouseAdapter() {
         });
         
-        btnCancelar.addActionListener(e -> limpiarCampos());
+        btnCancelar.addActionListener(e -> cancelarVenta());
     }
 
+
+    private void cancelarVenta() {
+        if (JOptionPane.showConfirmDialog(this, "¿Esta seguro de cancelar?", "Confirmar cancelacion",
+                JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+            limpiarCampos();
+        }
+    }
     private void limpiarCampos() {
         txtTituloLibro.setText("");
         txtAutor.setText("");

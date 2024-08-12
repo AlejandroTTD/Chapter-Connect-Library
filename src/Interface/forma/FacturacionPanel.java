@@ -1,113 +1,222 @@
 package Interface.forma;
 
 import javax.swing.*;
+
+import BusinessLogic.ClienteBL;
+
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import Interface.Customer.newButton;
 import Interface.Customer.newButton2;
-import Interface.IAStyle;
+
+import DataAccess.DTO.ClienteDTO;
+import DataAccess.ClienteDAO;
+import BusinessLogic.ClienteBL;
 
 public class FacturacionPanel extends JPanel {
-    private JTextField busquedaField;
-    private JButton buscarButton;
-    private JButton guardarButton;
-    private JButton eliminarButton;
-    private JTextArea resultadoArea;
+    private newButton btnConsumidorFinal, btnConFactura;
+    private JTextField txtCodigoBarras;
+    private JTextField nombreClienteField;
+    private JList<String> listaProductos;
+    private DefaultListModel<String> modeloLista;
+    private JTextField txtCantidad;
+    private JLabel lblTotal;
+    private newButton2 btnAgregar, btnEliminar, btnConfirmar, btnCancelar;
+
+    private ClienteBL clienteBL = new ClienteBL();
+
+
+    private boolean agregarCliente(ClienteDTO cliente) throws Exception {
+        try {
+            return clienteBL.create(cliente);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
 
     public FacturacionPanel() {
         setLayout(new BorderLayout());
-        initComponents();
+
+        // Panel superior para selección de cliente
+        JPanel panelCliente = new JPanel();
+        btnConsumidorFinal = new newButton("Consumidor Final");
+        btnConFactura = new newButton("Con Factura");
+        panelCliente.add(btnConsumidorFinal);
+        panelCliente.add(btnConFactura);
+        add(panelCliente, BorderLayout.NORTH);
+
+        // Panel central para productos y codigo de barras
+        JPanel panelCentral = new JPanel(new BorderLayout());
+
+        // Panel código de barras
+        JPanel panelCodigoBarras = new JPanel();
+        panelCodigoBarras.add(new JLabel("Codigo de Barras:"));
+        txtCodigoBarras = new JTextField(15);
+        panelCodigoBarras.add(txtCodigoBarras);
+        panelCentral.add(panelCodigoBarras, BorderLayout.NORTH);
+
+        // Lista productos
+        modeloLista = new DefaultListModel<>();
+        listaProductos = new JList<>(modeloLista);
+        JScrollPane scrollProductos = new JScrollPane(listaProductos);
+        panelCentral.add(scrollProductos, BorderLayout.CENTER);
+
+        // Panel para cantidad y botones de agregar/eliminar
+        JPanel panelAcciones = new JPanel();
+        panelAcciones.add(new JLabel("Cantidad:"));
+        txtCantidad = new JTextField(5);
+        panelAcciones.add(txtCantidad);
+        btnAgregar = new newButton2("Agregar");
+        btnEliminar = new newButton2("Eliminar");
+        panelAcciones.add(btnAgregar);
+        panelAcciones.add(btnEliminar);
+        panelCentral.add(panelAcciones, BorderLayout.SOUTH);
+
+        add(panelCentral, BorderLayout.CENTER);
+
+        // Panel inferior para resumen y botones de confirmar/cancelar
+        JPanel panelResumen = new JPanel();
+        lblTotal = new JLabel("Total: $0.00");
+        panelResumen.add(lblTotal);
+        btnConfirmar = new newButton2("Confirmar Venta");
+        btnCancelar = new newButton2("Cancelar Venta");
+        panelResumen.add(btnConfirmar);
+        panelResumen.add(btnCancelar);
+        add(panelResumen, BorderLayout.SOUTH);
+
+        agregarListeners();
     }
 
-    private void initComponents() {
-        // Panel superior para la busqueda
-        JPanel busquedaPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
-        busquedaField = new JTextField(20);
-        buscarButton = new newButton("Buscar");
-        busquedaPanel.add(new JLabel("Buscar venta (fecha o ID):"));
-        busquedaPanel.add(busquedaField);
-        busquedaPanel.add(buscarButton);
-
-        // Panel central para mostrar resultados
-        resultadoArea = new JTextArea(10, 40);
-        resultadoArea.setEditable(false);
-        JScrollPane scrollPane = new JScrollPane(resultadoArea);
-
-        // Panel inferior para botones de accion
-        JPanel accionesPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
-        guardarButton = new newButton2("Guardar cambios");
-        eliminarButton = new newButton2("Eliminar venta");
-        accionesPanel.add(guardarButton);
-        accionesPanel.add(eliminarButton);
-
-        // Agregar componentes al panel principal
-        add(busquedaPanel, BorderLayout.NORTH);
-        add(scrollPane, BorderLayout.CENTER);
-        add(accionesPanel, BorderLayout.SOUTH);
-
-        // Configurar listeners
-        buscarButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                buscarVenta();
+    private void agregarListeners() {
+        btnConsumidorFinal.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                seleccionarConsumidorFinal();
             }
         });
 
-        guardarButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                guardarCambios();
+        btnConFactura.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                try {
+                    abrirDialogoFactura();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
         });
 
-        eliminarButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                eliminarVenta();
+        txtCodigoBarras.addActionListener(e -> buscarProductoPorCodigo());
+
+        btnAgregar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                agregarProducto();
+            }
+        });
+
+        btnEliminar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                eliminarProducto();
+            }
+        });
+
+        btnConfirmar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                confirmarVenta();
+            }
+        });
+
+        btnCancelar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cancelarVenta();
             }
         });
     }
 
-    private void buscarVenta() {
-        String busqueda = busquedaField.getText();
-        // Logica para buscar la venta
-        if (busqueda.isEmpty()) {
-            resultadoArea.setText("Por favor, ingrese un termino de busqueda.");
-        } else {
-            // implementar busqueda real en la base de datos
-            resultadoArea.setText("Resultados de la búsqueda para: " + busqueda + "\n" +
-                    "Venta encontrada: ID 12345, Fecha: 2024-08-12, Total: $25");
-        }
+    private void seleccionarConsumidorFinal() {
+        JOptionPane.showMessageDialog(this, "Venta con Consumidor Final seleccionada");
+        btnConsumidorFinal.setEnabled(false);
+        btnConFactura.setEnabled(true);
     }
 
-    private void guardarCambios() {
-        // Logica para guardar los cambios
-        String datosActuales = resultadoArea.getText();
-        if (datosActuales.contains("Venta encontrada")) {
-            // implementar logica real para guardar en la base de datos
-            resultadoArea.setText("Cambios guardados exitosamente.");
-        } else {
-            resultadoArea.setText("No hay datos para guardar. Realice una busqueda primero.");
-        }
-    }
+    private void abrirDialogoFactura() throws Exception {
+        String nombreCliente = JOptionPane.showInputDialog(this, "Ingrese el nombre del cliente:");
 
-    private void eliminarVenta() {
-        // logica para eliminar la venta
-        String datosActuales = resultadoArea.getText();
-        if (datosActuales.contains("Venta encontrada")) {
-            // implementar logica real para eliminar de la base de datos
-            int opcion = JOptionPane.showConfirmDialog(this,
-                    "¿Esta seguro de que desea eliminar esta venta?",
-                    "Confirmar eliminacion",
-                    JOptionPane.YES_NO_OPTION);
-            if (opcion == JOptionPane.YES_OPTION) {
-                resultadoArea.setText("Venta eliminada exitosamente.");
+        if (nombreCliente != null && !nombreCliente.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Venta registrada para: " + nombreCliente);
+
+            Integer idEntidadTipo = 1; // Aquí defines el ID_EntidadTipo según tu lógica
+            ClienteDTO cliente = new ClienteDTO(idEntidadTipo, nombreCliente);
+
+            boolean clienteAgregado = agregarCliente(cliente);
+            if (clienteAgregado) {
+                JOptionPane.showMessageDialog(this, "Cliente agregado a la base de datos: " + nombreCliente);
             } else {
-                resultadoArea.setText("Eliminacion cancelada.");
+                JOptionPane.showMessageDialog(this, "Error al agregar cliente a la base de datos.");
             }
+
+            btnConFactura.setEnabled(false);
+            btnConsumidorFinal.setEnabled(true);
         } else {
-            resultadoArea.setText("No hay venta seleccionada para eliminar.");
+            JOptionPane.showMessageDialog(this, "Nombre de cliente inválido. Operación cancelada.");
         }
     }
+
+    private void buscarProductoPorCodigo() {
+        String codigo = txtCodigoBarras.getText();
+        if (!codigo.isEmpty()) {
+            // aqui iria lagica real de busqueda en la base de datos
+            String producto = "Producto " + codigo;
+            modeloLista.addElement(producto);
+            txtCodigoBarras.setText("");
+        }
+    }
+
+    private void agregarProducto() {
+        String cantidad = txtCantidad.getText();
+        if (!cantidad.isEmpty() && !listaProductos.isSelectionEmpty()) {
+            String productoSeleccionado = listaProductos.getSelectedValue();
+            modeloLista.addElement(cantidad + " x " + productoSeleccionado);
+            txtCantidad.setText("");
+            actualizarTotal();
+        }
+    }
+
+    private void eliminarProducto() {
+        int indiceSeleccionado = listaProductos.getSelectedIndex();
+        if (indiceSeleccionado != -1) {
+            modeloLista.remove(indiceSeleccionado);
+            actualizarTotal();
+        }
+    }
+
+    private void confirmarVenta() {
+        if (modeloLista.getSize() > 0) {
+            JOptionPane.showMessageDialog(this, "Venta confirmada por un total de " + lblTotal.getText());
+            limpiarVenta();
+        } else {
+            JOptionPane.showMessageDialog(this, "No hay productos en la venta", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    private void cancelarVenta() {
+        if (JOptionPane.showConfirmDialog(this, "¿Esta seguro de cancelar la venta?", "Confirmar cancelacion",
+                JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+            limpiarVenta();
+        }
+    }
+
+    private void actualizarTotal() {
+        // Aquí iría la lógica real para calcular el total
+        double total = modeloLista.getSize() * 10.0; // Simulación: cada item vale 10
+        lblTotal.setText(String.format("Total: $%.2f", total));
+    }
+
+    private void limpiarVenta() {
+        modeloLista.clear();
+        txtCodigoBarras.setText("");
+        txtCantidad.setText("");
+        lblTotal.setText("Total: $0.00");
+        btnConsumidorFinal.setEnabled(true);
+        btnConFactura.setEnabled(true);
+    }
+
 }

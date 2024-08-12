@@ -17,12 +17,11 @@ public class EntidadTipoDAO extends SQLiteDataHelper implements IDAO <EntidadTip
 
     @Override
     public boolean create(EntidadTipoDTO entity) throws Exception {
-        String query = " INSERT INTO Catalogo (IdCatalogoTipo ,Nombre ,Descripcion ) VALUES (?,?,?)";
+        String query = " INSERT INTO EntidadTipo (Nombre) VALUES (?)";
         try {
             Connection conexion = openConnection();
             PreparedStatement pstmt = conexion.prepareStatement(query);
-            pstmt.setInt(1, 2); //
-            pstmt.setString(2, entity.getNombre());
+            pstmt.setString(1, entity.getNombre());
             pstmt.executeUpdate();
             return true;
         } catch (SQLException e) {

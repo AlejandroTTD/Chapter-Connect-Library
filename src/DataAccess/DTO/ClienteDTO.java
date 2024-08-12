@@ -3,13 +3,15 @@ package DataAccess.DTO;
 public class ClienteDTO {
     
     private Integer ID_Cliente ;
+    private Integer ID_EntidadTipo;
     private String Estado;
     private String FechaCreacion; 
     private String FechaModifica;
 
-    public ClienteDTO(Integer iD_Cliente, String estado,
+    public ClienteDTO(Integer iD_Cliente,Integer iD_EntidadTipo, String estado,
             String fechaCreacion, String fechaModifica) {
         ID_Cliente = iD_Cliente;
+        ID_EntidadTipo = iD_EntidadTipo;
         Estado = estado;
         FechaCreacion = fechaCreacion;
         FechaModifica = fechaModifica;
@@ -23,6 +25,7 @@ public class ClienteDTO {
     public void setID_Cliente(Integer iD_Cliente) {
         ID_Cliente = iD_Cliente;
     }
+    
     public String getEstado() {
         return Estado;
     }
@@ -35,6 +38,13 @@ public class ClienteDTO {
     public void setFechaCreacion(String fechaCreacion) {
         FechaCreacion = fechaCreacion;
     }
+    public Integer getID_EntidadTipo() {
+        return ID_EntidadTipo;
+    }
+
+    public void setID_EntidadTipo(Integer iD_EntidadTipo) {
+        ID_EntidadTipo = iD_EntidadTipo;
+    }
     public String getFechaModifica() {
         return FechaModifica;
     }
@@ -46,8 +56,10 @@ public class ClienteDTO {
     public String toString() {
         return getClass().getName()
                 + "\n ID_Cliente:     " + getID_Cliente()
+                + "\n ID_EntidadTipo: " + getID_EntidadTipo()
                 + "\n Estado:         " + getEstado()
                 + "\n FechaCreacion:  " + getFechaCreacion()
                 + "\n FechaModifica:  " + getFechaModifica();
     }
+
 }

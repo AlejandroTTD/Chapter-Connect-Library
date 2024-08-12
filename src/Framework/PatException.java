@@ -9,6 +9,6 @@ public class PatException extends Exception {
 
     @Override
     public String getMessage() {
-        return "IPs..! se presento un error..";
+        return "Lo sentimos, ha ocurrido un error inesperado D:..";
     }
 }

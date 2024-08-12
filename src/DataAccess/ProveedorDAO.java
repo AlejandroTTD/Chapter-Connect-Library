@@ -72,8 +72,8 @@ public class ProveedorDAO extends SQLiteDataHelper implements IDAO <ProveedorDTO
             PreparedStatement pstmt = conexion.prepareStatement(query);
 
             pstmt.setString(1, entity.getNombre());
-            pstmt.setString(3, dtf.format(now));
-            pstmt.setInt(4, entity.getID_EntidadTipo());
+            pstmt.setString(2, dtf.format(now));
+            pstmt.setInt(3, entity.getID_EntidadTipo());
             pstmt.executeUpdate();
 
             return true;

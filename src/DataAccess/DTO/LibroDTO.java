@@ -1,17 +1,17 @@
 package DataAccess.DTO;
 
 public class LibroDTO {
-    private String ID_Libro ;
-    private String ID_Proveedor;
+    private Integer ID_Libro ;
+    private Integer ID_Proveedor;
     private String titulo         ;
     private String autor;
     private String genero         ;
     private String editorial;
     private String anioPublicacion; 
-    private String precioVenta;
-    private String precioCompra   ;
+    private Float precioVenta;
+    private Float precioCompra;
     private String codigoBarra;
-    private String nroUnidades   ; 
+    private Integer nroUnidades   ; 
     private String FechaEntrega;
     private String Estado;
     private String FechaCreacion ; 
@@ -19,8 +19,8 @@ public class LibroDTO {
 
 
     
-    public LibroDTO(String iD_Libro, String iD_Proveedor, String titulo, String autor, String genero, String editorial,
-            String anioPublicacion, String precioVenta, String precioCompra, String codigoBarra, String nroUnidades,
+    public LibroDTO(Integer iD_Libro, Integer iD_Proveedor, String titulo, String autor, String genero, String editorial,
+            String anioPublicacion, Float precioVenta, Float precioCompra, String codigoBarra, Integer nroUnidades,
             String fechaEntrega, String estado, String fechaCreacion, String fechaModifica) {
         ID_Libro = iD_Libro;
         ID_Proveedor = iD_Proveedor;
@@ -41,16 +41,16 @@ public class LibroDTO {
 
     public LibroDTO(){}
 
-    public String getID_Libro() {
+    public Integer getID_Libro() {
         return ID_Libro;
     }
-    public void setID_Libro(String iD_Libro) {
+    public void setID_Libro(Integer iD_Libro) {
         ID_Libro = iD_Libro;
     }
-    public String getID_Proveedor() {
+    public Integer getID_Proveedor() {
         return ID_Proveedor;
     }
-    public void setID_Proveedor(String iD_Proveedor) {
+    public void setID_Proveedor(Integer iD_Proveedor) {
         ID_Proveedor = iD_Proveedor;
     }
     public String getTitulo() {
@@ -83,16 +83,16 @@ public class LibroDTO {
     public void setAnioPublicacion(String anioPublicacion) {
         this.anioPublicacion = anioPublicacion;
     }
-    public String getPrecioVenta() {
+    public Float getPrecioVenta() {
         return precioVenta;
     }
-    public void setPrecioVenta(String precioVenta) {
+    public void setPrecioVenta(Float precioVenta) {
         this.precioVenta = precioVenta;
     }
-    public String getPrecioCompra() {
+    public Float getPrecioCompra() {
         return precioCompra;
     }
-    public void setPrecioCompra(String precioCompra) {
+    public void setPrecioCompra(Float precioCompra) {
         this.precioCompra = precioCompra;
     }
     public String getCodigoBarra() {
@@ -101,10 +101,10 @@ public class LibroDTO {
     public void setCodigoBarra(String codigoBarra) {
         this.codigoBarra = codigoBarra;
     }
-    public String getNroUnidades() {
+    public Integer getNroUnidades() {
         return nroUnidades;
     }
-    public void setNroUnidades(String nroUnidades) {
+    public void setNroUnidades(Integer nroUnidades) {
         this.nroUnidades = nroUnidades;
     }
     public String getFechaEntrega() {

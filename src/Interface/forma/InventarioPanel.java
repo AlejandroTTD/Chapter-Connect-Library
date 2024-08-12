@@ -65,6 +65,7 @@ public class InventarioPanel extends JPanel {
         btnNuevo.addActionListener(e -> limpiarCampos());
         
         btnModificar.addActionListener(e -> {
+            
         });
         
         btnEliminar.addActionListener(e -> {

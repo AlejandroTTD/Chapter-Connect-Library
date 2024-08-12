@@ -112,7 +112,7 @@ public class CajeroDAO extends SQLiteDataHelper implements IDAO<CajeroDTO>{
                     +", Estado "
                     +", FechaCreacion "
                     +", FechaModifica "
-                    +"FROM Cajero WHERE Estado = 'A' AND ID_Cajero = " + id;
+                    +"FROM Cajero WHERE Estado = 'A' AND ID_EntidadTipo = " + id;
         try{
             Connection conexion = openConnection();
             Statement stmt = conexion.createStatement();

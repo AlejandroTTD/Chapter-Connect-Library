@@ -116,7 +116,7 @@ public class ClienteDAO extends SQLiteDataHelper implements IDAO<ClienteDTO>{
                 + ", Estado "
                 + ", FechaCreacion "
                 + ", FechaModifica "
-                + "FROM Cliente WHERE Estado = 'A' AND ID_Cliente = " + id;
+                + "FROM Cliente WHERE Estado = 'A' AND ID_EntidadTipo = " + id;
         try {
             Connection conexion = openConnection();
             Statement stmt = conexion.createStatement();

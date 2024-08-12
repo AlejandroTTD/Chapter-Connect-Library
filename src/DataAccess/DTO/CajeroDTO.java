@@ -2,6 +2,7 @@ package DataAccess.DTO;
 
 public class CajeroDTO {
     private Integer ID_Cajero  ;  
+    private Integer ID_EntidadTipo;
     private String Usuario ;
     private String Contrasena;
     private String Estado     ;  
@@ -9,9 +10,10 @@ public class CajeroDTO {
     private String FechaModifica;
 
     
-    public CajeroDTO(Integer iD_Cajero, String usuario, String contrasena, String estado,
+    public CajeroDTO(Integer iD_Cajero,Integer iD_EntidadTipo, String usuario, String contrasena, String estado,
             String fechaCreacion, String fechaModifica) {
         ID_Cajero = iD_Cajero;
+        ID_EntidadTipo = iD_EntidadTipo;
         Usuario = usuario;
         Contrasena = contrasena;
         Estado = estado;
@@ -42,6 +44,12 @@ public class CajeroDTO {
     public String getEstado() {
         return Estado;
     }
+    public Integer getID_EntidadTipo() {
+        return ID_EntidadTipo;
+    }
+    public void setID_EntidadTipo(Integer iD_EntidadTipo) {
+        ID_EntidadTipo = iD_EntidadTipo;
+    }
     public void setEstado(String estado) {
         Estado = estado;
     }
@@ -62,6 +70,7 @@ public class CajeroDTO {
     public String toString() {
         return getClass().getName()
                 + "\n ID_Cajero:      " + getID_Cajero()
+                + "\n ID_EntidadTipo: " + getID_EntidadTipo()
                 + "\n Usuario:        " + getUsuario()
                 + "\n Contrasena:     " + getContrasena()
                 + "\n Estado:         " + getEstado()

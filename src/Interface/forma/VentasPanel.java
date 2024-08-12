@@ -30,7 +30,7 @@ public class VentasPanel extends JPanel {
 
         // Panel código de barras
         JPanel panelCodigoBarras = new JPanel();
-        panelCodigoBarras.add(new JLabel("Código de Barras:"));
+        panelCodigoBarras.add(new JLabel("Codigo de Barras:"));
         txtCodigoBarras = new JTextField(15);
         panelCodigoBarras.add(txtCodigoBarras);
         panelCentral.add(panelCodigoBarras, BorderLayout.NORTH);
@@ -64,7 +64,6 @@ public class VentasPanel extends JPanel {
         panelResumen.add(btnCancelar);
         add(panelResumen, BorderLayout.SOUTH);
 
-        // Agregar listeners
         agregarListeners();
     }
 
@@ -109,30 +108,77 @@ public class VentasPanel extends JPanel {
     }
 
     private void seleccionarConsumidorFinal() {
-        // Implementar logica para consumidor final
+        JOptionPane.showMessageDialog(this, "Venta con Consumidor Final seleccionada");
+        btnConsumidorFinal.setEnabled(false);
+        btnConFactura.setEnabled(true);
     }
 
     private void abrirDialogoFactura() {
-        // Implementar dialogo para datos de factura
+        String nombreCliente = JOptionPane.showInputDialog(this, "Ingrese el nombre del cliente:");
+        if (nombreCliente != null && !nombreCliente.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Venta registrada para: " + nombreCliente);
+            btnConFactura.setEnabled(false);
+            btnConsumidorFinal.setEnabled(true);
+        }
     }
 
     private void buscarProductoPorCodigo() {
-        // Implementar busqueda de producto por codigo de barras
+        String codigo = txtCodigoBarras.getText();
+        if (!codigo.isEmpty()) {
+            // aqui iria lagica real de busqueda en la base de datos
+            String producto = "Producto " + codigo;
+            modeloLista.addElement(producto);
+            txtCodigoBarras.setText("");
+        }
     }
 
     private void agregarProducto() {
-        // Implementar logica para agregar producto
+        String cantidad = txtCantidad.getText();
+        if (!cantidad.isEmpty() && !listaProductos.isSelectionEmpty()) {
+            String productoSeleccionado = listaProductos.getSelectedValue();
+            modeloLista.addElement(cantidad + " x " + productoSeleccionado);
+            txtCantidad.setText("");
+            actualizarTotal();
+        }
     }
 
     private void eliminarProducto() {
-        // Implementar logica para eliminar producto
+        int indiceSeleccionado = listaProductos.getSelectedIndex();
+        if (indiceSeleccionado != -1) {
+            modeloLista.remove(indiceSeleccionado);
+            actualizarTotal();
+        }
     }
 
     private void confirmarVenta() {
-        // Implementar logica para confirmar venta
+        if (modeloLista.getSize() > 0) {
+            JOptionPane.showMessageDialog(this, "Venta confirmada por un total de " + lblTotal.getText());
+            limpiarVenta();
+        } else {
+            JOptionPane.showMessageDialog(this, "No hay productos en la venta", "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }
 
     private void cancelarVenta() {
-        // Implementar logica para cancelar venta
+        if (JOptionPane.showConfirmDialog(this, "¿Esta seguro de cancelar la venta?", "Confirmar cancelacion",
+                JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+            limpiarVenta();
+        }
     }
+
+    private void actualizarTotal() {
+        // Aquí iría la lógica real para calcular el total
+        double total = modeloLista.getSize() * 10.0; // Simulación: cada item vale 10
+        lblTotal.setText(String.format("Total: $%.2f", total));
+    }
+
+    private void limpiarVenta() {
+        modeloLista.clear();
+        txtCodigoBarras.setText("");
+        txtCantidad.setText("");
+        lblTotal.setText("Total: $0.00");
+        btnConsumidorFinal.setEnabled(true);
+        btnConFactura.setEnabled(true);
+    }
+
 }

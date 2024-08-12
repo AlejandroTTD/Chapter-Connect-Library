@@ -77,7 +77,7 @@ public class FacturacionPanel extends JPanel {
         } else {
             // implementar busqueda real en la base de datos
             resultadoArea.setText("Resultados de la búsqueda para: " + busqueda + "\n" +
-                    "Venta encontrada: ID 12345, Fecha: 2024-08-12, Total: $100.00");
+                    "Venta encontrada: ID 12345, Fecha: 2024-08-12, Total: $25");
         }
     }
 

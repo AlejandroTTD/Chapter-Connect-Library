@@ -32,7 +32,7 @@ public class panelCentral extends JFrame{
 
     private void customizeComponent(String tilteApp) {
         setTitle(tilteApp);
-        setSize(1245, 820);
+        setSize(1245, 620);
         setResizable(false);
         setLocationRelativeTo(null); // Centrar en la pantalla
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
